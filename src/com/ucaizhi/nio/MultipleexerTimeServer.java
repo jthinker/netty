@@ -18,7 +18,7 @@ public class MultipleexerTimeServer implements Runnable {
 	private volatile boolean stop;
 
 	/**
-	 * ³õÊ¼»¯¶àÂ·¸´ÓÃÆ÷£¬°ó¶¨¼àÌı¶Ë¿Ú
+	 * åˆå§‹åŒ–å¤šè·¯å¤ç”¨å™¨ï¼Œç»‘å®šç›‘å¬ç«¯å£
 	 * 
 	 * @param port
 	 */
@@ -66,7 +66,7 @@ public class MultipleexerTimeServer implements Runnable {
 				t.printStackTrace();
 			}
 		}
-		// ¶àÂ·¸´ÓÃÆ÷¹Ø±Õºó£¬ËùÓĞ×¢²áÔÚÉÏÃæµÄChannel ºÍ Pipe µÈ×ÊÔ´¶¼»á±»×Ô¶¯È¥×¢²á²¢¹Ø±Õ£¬ËùÒÔ²»ĞèÒªÖØ¸´ÊÍ·Å×ÊÔ´
+		// å¤šè·¯å¤ç”¨å™¨å…³é—­åï¼Œæ‰€æœ‰æ³¨å†Œåœ¨ä¸Šé¢çš„Channel å’Œ Pipe ç­‰èµ„æºéƒ½ä¼šè¢«è‡ªåŠ¨å»æ³¨å†Œå¹¶å…³é—­ï¼Œæ‰€ä»¥ä¸éœ€è¦é‡å¤é‡Šæ”¾èµ„æº
 		if (selector != null) {
 			try {
 				selector.close();
@@ -79,7 +79,7 @@ public class MultipleexerTimeServer implements Runnable {
 
 	private void handleInput(SelectionKey key) throws IOException {
 		if (key.isValid()) {
-			// ´¦ÀíĞÂ½ÓÈëµÄÇëÇóÏûÏ¢
+			// å¤„ç†æ–°æ¥å…¥çš„è¯·æ±‚æ¶ˆæ¯
 			if (key.isAcceptable()) {
 				// Accept th new connection
 				ServerSocketChannel ssc = (ServerSocketChannel) key.channel();
@@ -103,11 +103,11 @@ public class MultipleexerTimeServer implements Runnable {
 							? new Date(System.currentTimeMillis()).toString() : "BAD ORDER";
 					doWrite(sc, currentTime);
 				} else if (readBytes < 0) {
-					// ¶Ô¶ËÁ´Â·¹Ø±Õ
+					// å¯¹ç«¯é“¾è·¯å…³é—­
 					key.cancel();
 					sc.close();
 				} else {
-					; // ¶Áµ½0×Ö½Ú£¬ºöÂÔ
+					; // è¯»åˆ°0å­—èŠ‚ï¼Œå¿½ç•¥
 				}
 			}
 		}

@@ -18,15 +18,15 @@ public class TimeServer {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(boosGroup, workerGroup).channel(NioServerSocketChannel.class).option(ChannelOption.SO_BACKLOG, 1024)
 					.childHandler(new ChildChannelHandler());
-			// °ó¶¨¶Ë¿Ú£¬Í¬²½µÈ´ı³É¹¦
+			// ç»‘å®šç«¯å£ï¼ŒåŒæ­¥ç­‰å¾…æˆåŠŸ
 			ChannelFuture f = b.bind(port).sync();
 
-			// µÈ´ı·şÎñ¶Ë¼àÌı¶Ë¿Ú¹Ø±Õ
+			// ç­‰å¾…æœåŠ¡ç«¯ç›‘å¬ç«¯å£å…³é—­
 			f.channel().closeFuture().sync();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			// ÓÅÑÅÍË³ö£¬ÊÍ·ÅÏß³Ì³Ø×ÊÔ´
+			// ä¼˜é›…é€€å‡ºï¼Œé‡Šæ”¾çº¿ç¨‹æ± èµ„æº
 			boosGroup.shutdownGracefully();
 			workerGroup.shutdownGracefully();
 		}
